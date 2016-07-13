@@ -16,3 +16,4 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
     }
   ];
 });
+phonecatApp.component()
