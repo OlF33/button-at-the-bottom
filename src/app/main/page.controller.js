@@ -1,17 +1,21 @@
-angular.module("buttonAtTheBottom").controller('PageController', function($scope) {
-    $scope.header = 'Button at the bottom';
-    $scope.quantity = "1";
-    $scope.text = "Строка №";
-    $scope.list = [1];
-    $scope.onQuantityChange = function() {
-        $scope.list = [];
-        var elem = document.getElementById("repeatQuantity");
+angular.module("buttonAtTheBottom").controller('PageController', ['$document', function($document) {
+    var vm = this;
+    vm.header = 'Button at the bottom';
+    vm.quantity = "1";
+    vm.text = "Строка №";
+    vm.list = [1];
+    vm.onQuantityChange = function() {
+        var vm = this;
+        vm.list = [];
+        var elem = $document[0].getElementById("repeatQuantity");
         var txQuan = elem.value;
         var quan = +txQuan;
         if (quan <= 0) return;
-        for(i = 1; i <= quan; i++) {
-            $scope.list.push(i);
+        for(var i1 = 1; i1 <= quan; i1++) {
+            vm.list.push(i1);
         }
-        elem.ngChange="onQuantityChange()"
     }
-});
+    vm.OnClick = function() {
+        alert("It's OK");
+    }
+}]);
