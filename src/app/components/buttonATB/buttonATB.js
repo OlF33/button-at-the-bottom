@@ -5,8 +5,12 @@ var bATB = angular.module('buttonAtTheBottom');
 
             // Идея такая
             // Если содержимое вполне умещается на экране, то тупо всем родителям устанавливаем высоту 100%
-            // Иначе parent'у высоту auto, previousSibling от parent'а 100% и скроллинг
+            // Иначе parent'у высоту auto, previousElementSibling от parent'а 100% и скроллинг
             // Вопрос: как определить, что всё умещается?
+
+            // Однако есть решение проще
+            // "Папе" сделать высоту кнопки + margin, а "дяде" - 100% и scroll=auto
+            // Это и лучше, потому что не надо реагировать на resize
 
             // сначала соберём всех родителей
             var parents = [];
@@ -19,17 +23,23 @@ var bATB = angular.module('buttonAtTheBottom');
 
             // проставим высоту (кроме непосредственного родителя)
             for (var i = 1; i < parents.length; i++) {
-//                 parents[i].css({
-//                     height: "100%"
-//                 })
                 parents[i].style.height = "100%";
             }
 
-            // самое скользкое место
-            // определяем, будет ли скроллинг
-            // т е надо взять высоту "дедушки" в пикселах и посчитать, умещаются ли его детки
-            var a = 75;
+            // Нам понадобятся непосредственный родитель ("папа") и его "брат" previousElementSibling ("дядя")
+            var dad = parents[0];
+            var uncle = dad.previousElementSibling;
 
+            //var styles = window.getComputedStyle(element[0]);
+            //var margin = parseInt(styles['marginTop']) + parseInt(styles['marginBottom']);
+            //var dadsHeight = element[0].offsetHeight + margin;
+            //dad.style.height = dadsHeight + "px";
+            // "Папу" вообще не надо трогать, и так хорошо.
+            // А если нехорошо, раскомментировать строки 33-36 и посмотреть,
+            // что мешает установить нормальную высоту.
+            // Например, flex может мешать.
+            uncle.style.height = "100%";
+            uncle.style.overflowY = "auto"
         }
         return {
             restrict: "A",

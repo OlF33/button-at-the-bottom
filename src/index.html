@@ -32,7 +32,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="page" layout="column" ng-controller="PageController as vm">
+    <div flex id="page" layout="column" ng-controller="PageController as vm">
         <md-toolbar md-scroll-shrink>
             <div class="md-toolbar-tools">
                 <h3>
@@ -40,7 +40,7 @@
                 </h3>
             </div>
         </md-toolbar>
-        <md-form flex layout-margin>
+        <md-form flex layout-margin overflow-y="auto">
             <div layout="row"  class="form-group">
                 <label>Quantity</label>
                 <input id="repeatQuantity" type="text" pattern="/^[0-9]*$" ng-model="vm.quantity" ng-change="vm.onQuantityChange()"></input>
@@ -49,8 +49,8 @@
                 <md-item>{{vm.text + i}}</md-item>
             </md-list>
         </md-form>
-        <div flex>
-            <md-button rad-button class="md-primary md-raised rad-button" ng-mouseup="vm.OnClick()">
+        <div layout="row" layout-align="end end" class="ng-scope">
+            <md-button rad-button class="md-primary md-raised" ng-mouseup="vm.OnClick()">
                 <span>button</span>
             </md-button>
         </div>
