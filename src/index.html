@@ -40,7 +40,7 @@
                 </h3>
             </div>
         </md-toolbar>
-        <md-form flex layout-margin overflow-y="auto">
+        <md-form>
             <div layout="row"  class="form-group">
                 <label>Quantity</label>
                 <input id="repeatQuantity" type="text" pattern="/^[0-9]*$" ng-model="vm.quantity" ng-change="vm.onQuantityChange()"></input>
@@ -49,8 +49,9 @@
                 <md-item>{{vm.text + i}}</md-item>
             </md-list>
         </md-form>
+        <hr/>
         <div layout="row" layout-align="end end" class="ng-scope">
-            <md-button rad-button class="md-primary md-raised" ng-mouseup="vm.OnClick()">
+            <md-button rad-button="2" class="md-primary md-raised" ng-mouseup="vm.OnClick()">
                 <span>button</span>
             </md-button>
         </div>

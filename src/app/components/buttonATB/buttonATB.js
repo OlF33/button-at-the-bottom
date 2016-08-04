@@ -28,7 +28,11 @@ var bATB = angular.module('buttonAtTheBottom');
 
             // Нам понадобятся непосредственный родитель ("папа") и его "брат" previousElementSibling ("дядя")
             var dad = parents[0];
-            var uncle = dad.previousElementSibling;
+            var uncle = dad;
+            var limit = parseInt(attrs.radButton == "" ? "1" : attrs.radButton);
+            for (i = 0; i < limit; i++) {
+                uncle = uncle.previousElementSibling;
+            }
 
             //var styles = window.getComputedStyle(element[0]);
             //var margin = parseInt(styles['marginTop']) + parseInt(styles['marginBottom']);
